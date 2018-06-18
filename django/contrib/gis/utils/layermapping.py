@@ -75,6 +75,7 @@ class LayerMapping:
         models.BigIntegerField: (OFTInteger, OFTReal, OFTString),
         models.SmallIntegerField: (OFTInteger, OFTReal, OFTString),
         models.PositiveSmallIntegerField: (OFTInteger, OFTReal, OFTString),
+        models.TimeStampField: (OFTInteger),
     }
 
     def __init__(self, model, data, mapping, layer=0,

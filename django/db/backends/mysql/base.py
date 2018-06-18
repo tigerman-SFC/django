@@ -126,6 +126,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'TextField': 'longtext',
         'TimeField': 'time(6)',
         'UUIDField': 'char(32)',
+        'TimeStampField': 'timestamp default \'2000-01-01\'',
     }
 
     # For these columns, MySQL doesn't:

@@ -361,6 +361,10 @@ body.popup .submit-row {
     width: 5em;
 }
 
+.vTimeStampField {
+    width: 10em;
+}
+
 .vBigIntegerField {
     width: 10em;
 }

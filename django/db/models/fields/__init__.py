@@ -40,7 +40,7 @@ __all__ = [
     'FloatField', 'GenericIPAddressField', 'IPAddressField', 'IntegerField',
     'NOT_PROVIDED', 'NullBooleanField', 'PositiveIntegerField',
     'PositiveSmallIntegerField', 'SlugField', 'SmallIntegerField', 'TextField',
-    'TimeField', 'URLField', 'UUIDField',
+    'TimeField', 'URLField', 'UUIDField', 'TimeStampField',
 ]
 
 
@@ -1842,6 +1842,25 @@ class BigIntegerField(IntegerField):
             'max_value': BigIntegerField.MAX_BIGINT,
             **kwargs,
         })
+
+
+class TimeStampField(IntegerField):
+    def get_internal_type(self):
+        return "TimeStampField"
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': 1,
+                    'max_value': 2147483647}
+        defaults.update(kwargs)
+        return super(TimeStampField, self).formfield(**defaults)
+
+    def get_prep_value(self, value):
+        value = super(IntegerField, self).get_prep_value(value)
+        if value is None:
+            return None
+        else:
+            datetime_prep = datetime.datetime.fromtimestamp(value)
+        return datetime_prep.strftime('%Y-%m-%d %H:%M:%S')
 
 
 class IPAddressField(Field):
